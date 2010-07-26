@@ -107,7 +107,7 @@ module ActionView
           return content_tag_without_haml(name, *args) {preserve(&block)}
         end
 
-        returning content_tag_without_haml(name, *args, &block) do |content|
+        content_tag_without_haml(name, *args, &block).tap do |content|
           return Haml::Helpers.preserve(content) if preserve && content
         end
       end
